@@ -1,25 +1,25 @@
 module helloc3;
 import std::io;
-import raylib;
+import raylib5::rl;
 
 const int WIDTH = 1024;
 const int HEIGHT = 768;
 
-const raylib::Camera3D camera = {
-	raylib::Vector3 {10.0, 10.0, 10.0},
-	raylib::Vector3 {0.0, 0.0, 0.0},
-	raylib::Vector3 {0.0, 1.0, 0.0},
+const rl::Camera3D CAMERA = {
+	rl::Vector3 {10.0, 10.0, 10.0},
+	rl::Vector3 {0.0, 0.0, 0.0},
+	rl::Vector3 {0.0, 1.0, 0.0},
 	45.0,
-	raylib::CameraProjection.PERSPECTIVE,
+	rl::CameraProjection.PERSPECTIVE,
 };
 
 fn int main(String[] args)
 {
 	io::printn("Hello, World!");
-	defer raylib::CloseWindow();
+	defer rl::closeWindow();
 	init();
-	raylib::SetTargetFPS(60);
-	while (!raylib::WindowShouldClose()) {
+	rl::setTargetFPS(60);
+	while (!rl::windowShouldClose()) {
 		update();
 		draw();
 	}
@@ -27,22 +27,22 @@ fn int main(String[] args)
 }
 
 fn void init() {
-	raylib::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Hello C3!");
+	rl::initWindow(WIDTH, HEIGHT, "Hello C4!");
 }
 
 fn void update() {
-	raylib::UpdateCamera(&camera, raylib::CameraMode.ORBITAL);
+	rl::updateCamera(&CAMERA, rl::CameraMode.ORBITAL);
 }
 
 fn void draw() {
-	raylib::BeginDrawing();
-	defer raylib::EndDrawing();
-	raylib::ClearBackground(raylib::RAYWHITE);
-	raylib::BeginMode3D(camera);
-	defer raylib::EndMode3D();
-	raylib::DrawPlane(raylib::Vector3{0.0, 0.0, 0.0}, raylib::Vector2{10.0, 10.0}, raylib::LIGHTGRAY);
-	raylib::DrawCube(raylib::Vector3{0.0, 1.0, 0.0}, 2.0, 2.0, 2.0, raylib::RED);
-	raylib::DrawCubeWires(raylib::Vector3{0.0, 1.0, 0.0}, 2.0, 2.0, 2.0, raylib::DARKGRAY);
-	raylib::DrawGrid(10, 1.0);
-	raylib::DrawFPS(10, 10);
+	rl::beginDrawing();
+	defer rl::endDrawing();
+	rl::clearBackground(rl::RAYWHITE);
+	rl::beginMode3D(CAMERA);
+	defer rl::endMode3D();
+	rl::drawPlane(rl::Vector3{0.0, 0.0, 0.0}, rl::Vector2{10.0, 10.0}, rl::LIGHTGRAY);
+	rl::drawCube(rl::Vector3{0.0, 1.0, 0.0}, 2.0, 2.0, 2.0, rl::RED);
+	rl::drawCubeWires(rl::Vector3{0.0, 1.0, 0.0}, 2.0, 2.0, 2.0, rl::DARKGRAY);
+	rl::drawGrid(10, 1.0);
+	rl::drawFPS(10, 10);
 }
