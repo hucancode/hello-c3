@@ -1,5 +1,4 @@
 module helloc3;
-import std::io;
 import raylib5::rl;
 
 const int WIDTH = 1024;
