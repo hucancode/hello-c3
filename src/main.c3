@@ -13,12 +13,9 @@ rl::Camera3D camera = {
 	rl::CameraProjection.PERSPECTIVE,
 };
 
-fn int main(String[] args)
-{
-	io::printn("Hello, World!");
-	defer rl::closeWindow();
+fn int main(String[] args) {
 	init();
-	rl::setTargetFPS(60);
+	defer deinit();
 	while (!rl::windowShouldClose()) {
 		update();
 		draw();
@@ -28,6 +25,11 @@ fn int main(String[] args)
 
 fn void init() {
 	rl::initWindow(WIDTH, HEIGHT, "Hello C4!");
+	rl::setTargetFPS(60);
+}
+
+fn void deinit() {
+    rl::closeWindow();
 }
 
 fn void update() {
